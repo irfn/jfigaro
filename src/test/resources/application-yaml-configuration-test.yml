@@ -1,0 +1,5 @@
+shouldLoadConfig: foo
+shouldLoadConfigBasedOnEnvironment: foo
+shouldUseDefaultConfiWhenSpecificValueIsNotSet: defaultFoo
+test:
+  shouldLoadConfigBasedOnEnvironment: bar
