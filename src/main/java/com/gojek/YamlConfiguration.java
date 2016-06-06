@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Objects;
 
-class YamlConfiguration extends AbstractConfiguration {
+class YamlConfiguration extends ApplicationConfiguration {
 
     private Logger logger = LoggerFactory.getLogger(YamlConfiguration.class);
     private Map<String, Object> configuration;

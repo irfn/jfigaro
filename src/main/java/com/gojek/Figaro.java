@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.io.FileNotFoundException;
 
 public class Figaro {
-    public static AbstractConfiguration configure() {
-        Logger logger = LoggerFactory.getLogger(AbstractConfiguration.class);
+    public static ApplicationConfiguration configure() {
+        Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
 
         String appEnvironment = System.getenv("APP_ENVIRONMENT");
         if (appEnvironment == null || appEnvironment.equals("test") || appEnvironment.equals("development")) {
