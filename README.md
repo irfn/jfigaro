@@ -10,6 +10,10 @@ This is straightforward in production environments but local development environ
 
 JFigaro parses a YAML file in your application for setting environment in dev and test modes. In other modes Environment is used via `System.getenv`
 
+# Yet another way
+
+xkcd [Yet another standard](http://imgs.xkcd.com/comics/standards.png)
+
 
 # App Environment
 `APP_ENVIRONMENT` is the environment variable which jFigaro looks for. 
