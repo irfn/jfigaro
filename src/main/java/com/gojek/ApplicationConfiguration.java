@@ -1,6 +1,6 @@
 package com.gojek;
 
-abstract class ApplicationConfiguration {
+public abstract class ApplicationConfiguration {
     public abstract Object getValue(String name);
 
     public String getValueAsString(String name) {

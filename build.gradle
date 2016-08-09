@@ -9,10 +9,29 @@ repositories {
 }
 
 group 'com.gojek'
+version '0.0.2'
+
+jar {
+    exclude('local.properties')
+    exclude('application.yml')
+}
+
+publishing {
+    publications {
+        jfigaro(MavenPublication) {
+            from components.java
+            groupId groupId
+            artifactId project.name
+            version version
+        }
+    }
+}
 
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
+    publications = ['jfigaro']
+
 
     configurations = ['archives']
     pkg {
@@ -25,21 +44,6 @@ bintray {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-}
-
-jar {
-    exclude('local.properties')
-    exclude('application.yml')
-    into("META-INF/maven/$project.group/$project.name") {
-        from 'pom.xml'
-    }
-}
 
 dependencies {
     compile 'org.slf4j:slf4j-api:1.7.18'
