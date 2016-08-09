@@ -1,7 +1,7 @@
 package com.gojek;
 
 public abstract class ApplicationConfiguration {
-    public abstract Object getValue(String name);
+    abstract Object getValue(String name);
 
     public String getValueAsString(String name) {
         return getValue(name).toString();
