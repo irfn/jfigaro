@@ -12,7 +12,7 @@ JFigaro parses a YAML file in your application for setting environment in dev an
 
 # Yet another way
 
-xkcd [Yet another standard](http://imgs.xkcd.com/comics/standards.png)
+<img src="http://imgs.xkcd.com/comics/standards.png">
 
 
 # App Environment
