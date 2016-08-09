@@ -1,7 +1,44 @@
-apply plugin: 'java'
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id "com.jfrog.bintray" version "1.7"
+}
 
 repositories {
     jcenter()
+}
+
+group 'com.gojek'
+
+bintray {
+    user = System.getenv('BINTRAY_USER')
+    key = System.getenv('BINTRAY_KEY')
+
+    configurations = ['archives']
+    pkg {
+        repo = "maven"
+        name = "jfigaro"
+        websiteUrl = "https://github.com/irfn/jfigaro"
+        vcsUrl = "https://github.com/irfn/jfigaro"
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+jar {
+    exclude('local.properties')
+    exclude('application.yml')
+    into("META-INF/maven/$project.group/$project.name") {
+        from 'pom.xml'
+    }
 }
 
 dependencies {
