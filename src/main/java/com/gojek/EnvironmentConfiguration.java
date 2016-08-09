@@ -7,7 +7,7 @@ class EnvironmentConfiguration extends ApplicationConfiguration {
     private Logger logger = LoggerFactory.getLogger(EnvironmentConfiguration.class);
 
     public EnvironmentConfiguration() {
-        logger.debug("loading encironment configuration");
+        logger.debug("loading environment configuration");
     }
 
     @Override
