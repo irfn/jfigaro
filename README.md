@@ -8,13 +8,30 @@ Like Figaro, JFigaro is inspired by the [Twelve-Factor App](http://12factor.net)
 
 This is straightforward in production environments but local development environments are often shared between multiple applications, requiring multiple configurations.
 
+#Whats Wrong with using java properties for configuration?
+
+- Java properties is an ancient api and has not improved or changed in decades
+- Properties need to be included into the artifact(although this can be manipulated via changing classpaths and permissions which is messy). 
+- The more scalable way to have configuration is via environment variables. (see 12factor)
+- Proliferation of properties files to support testing etc.
+
+#Whats different?
+
 JFigaro parses a YAML file in your application for setting environment in dev and test modes. In other modes Environment is used via `System.getenv`
+
+- Single application.yml (typically not checked into code, application.yml.example could be checked in instead) for defining development, test environments
+- Any configuration may be overridden via environment (even in development/test). Environment defined configuration is always preferred.
 
 # Yet another way
 
 <img src="http://imgs.xkcd.com/comics/standards.png">
 
 
+# Roadmap
+
+- | Feature | done|
+- | MVP | yes|
+- | Logging | no |
 # App Environment
 `APP_ENVIRONMENT` is the environment variable which jFigaro looks for. 
 
