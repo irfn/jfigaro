@@ -9,11 +9,20 @@ repositories {
 }
 
 group 'com.gojek'
-version '0.0.4'
+version '0.0.5'
 
 jar {
     exclude('local.properties')
     exclude('application.yml')
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
 }
 
 publishing {
@@ -23,6 +32,8 @@ publishing {
             groupId groupId
             artifactId project.name
             version version
+
+            artifact sourcesJar
         }
     }
 }
@@ -37,6 +48,7 @@ bintray {
     pkg {
         repo = "maven"
         name = "jfigaro"
+        desc = 'Java configuration library'
         websiteUrl = "https://github.com/irfn/jfigaro"
         vcsUrl = "https://github.com/irfn/jfigaro"
         licenses = ["Apache-2.0"]
