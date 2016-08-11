@@ -9,7 +9,7 @@ repositories {
 }
 
 group 'com.gojek'
-version '0.0.5'
+version '0.0.6'
 
 jar {
     exclude('local.properties')

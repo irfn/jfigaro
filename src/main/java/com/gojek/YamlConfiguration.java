@@ -20,7 +20,7 @@ class YamlConfiguration extends ApplicationConfiguration {
     YamlConfiguration(String env, String yamlFileName) throws FileNotFoundException {
         this.env = env;
         logger.debug("loading resource {} for {}", yamlFileName, this.env);
-        URL resource = getClass().getClassLoader().getResource(yamlFileName);
+        URL resource = getClass().getResource(yamlFileName);
         Yaml yaml = new Yaml();
         FileInputStream fileInputStream = new FileInputStream(resource.getFile());
         configuration = (Map<String, Object>) yaml.load(fileInputStream);
