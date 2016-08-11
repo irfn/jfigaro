@@ -8,11 +8,11 @@ public abstract class ApplicationConfiguration {
     }
 
     public Integer getValueAsInt(String name) {
-        return (Integer) getValue(name);
+        return Integer.valueOf(this.getValueAsString(name));
     }
 
     public Double getValueAsDouble(String name) {
-        return (Double) getValue(name);
+        return Double.valueOf(this.getValueAsString(name));
     }
 
     public Long getValueAsLong(String name) {

@@ -61,7 +61,7 @@ crashlytics-build.properties
 fabric.properties
 ### Java template
 *.class
-
+classes
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

@@ -13,7 +13,7 @@ public class ApplicationConfigurationTest {
     public void shouldGetValueAsStringViaCast() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
-                return 1.0;
+                return "1.0";
             }
         };
         assertEquals("1.0", exampleConfiguration.getValueAsString("test"));
@@ -23,7 +23,7 @@ public class ApplicationConfigurationTest {
     public void shouldGetValueAsInt() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
-                return 1;
+                return "1";
             }
         };
         assertEquals(Integer.valueOf("1"), exampleConfiguration.getValueAsInt("test"));
@@ -33,7 +33,7 @@ public class ApplicationConfigurationTest {
     public void shouldGetValueAsDouble() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
-                return 1.0;
+                return "1.0";
             }
         };
         assertEquals(Double.valueOf("1.0"), exampleConfiguration.getValueAsDouble("test"));
@@ -43,7 +43,7 @@ public class ApplicationConfigurationTest {
     public void shouldGetValueAsLong() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
-                return 1L;
+                return "1";
             }
         };
         assertEquals(Long.valueOf(1), exampleConfiguration.getValueAsLong("test"));
@@ -53,7 +53,7 @@ public class ApplicationConfigurationTest {
     public void shouldGetValueAsFloat() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
-                return 1f;
+                return "1";
             }
         };
         assertEquals(Float.valueOf(1), exampleConfiguration.getValueAsFloat("test"));
