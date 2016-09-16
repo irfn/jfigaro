@@ -22,4 +22,8 @@ public abstract class ApplicationConfiguration {
     public Float getValueAsFloat(String name) {
         return Float.parseFloat(this.getValueAsString(name));
     }
+
+    public boolean getValueAsBoolean(String name) {
+        return Boolean.valueOf(this.getValueAsString(name));
+    }
 }

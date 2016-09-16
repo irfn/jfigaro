@@ -4,6 +4,7 @@ package com.gojek;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ApplicationConfigurationTest {
 
@@ -57,5 +58,15 @@ public class ApplicationConfigurationTest {
             }
         };
         assertEquals(Float.valueOf(1), exampleConfiguration.getValueAsFloat("test"));
+    }
+
+    @Test
+    public void shouldGetValueAsBoolean() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return true;
+            }
+        };
+        assertTrue(exampleConfiguration.getValueAsBoolean("test"));
     }
 }
