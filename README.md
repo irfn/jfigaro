@@ -19,7 +19,8 @@ This is straightforward in production environments but local development environ
 
 JFigaro parses a YAML file in your application for setting environment in dev and test modes. In other modes Environment is used via `System.getenv`
 
-- Single application.yml (typically not checked into code, application.yml.example could be checked in instead) for defining development, test environments
+- Single YAML file  (typically not checked into code, application.yml.example could be checked in instead) for defining development, test environments
+- YAML filename can be configured using system property `figaro.yaml.filename`. Defaults to `application.yml` 
 - Any configuration may be overridden via environment (even in development/test). Environment defined configuration is always preferred.
 
 # Yet another way

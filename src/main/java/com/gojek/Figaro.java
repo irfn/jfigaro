@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
+import java.util.Optional;
 
 public class Figaro {
     public static ApplicationConfiguration configure() {
@@ -16,7 +17,8 @@ public class Figaro {
             }
             logger.info("Loading file based configuration");
             try {
-                return new YamlConfiguration(appEnvironment, "/application.yml");
+                String yamlFileName = getYamlFileName();
+                return new YamlConfiguration(appEnvironment, yamlFileName);
             } catch (FileNotFoundException e) {
                 logger.error("yaml configuration was not found", e);
                 e.printStackTrace();
@@ -26,5 +28,13 @@ public class Figaro {
             logger.info("Loading environment based configuration");
             return new EnvironmentConfiguration();
         }
+    }
+
+    private static String getYamlFileName() {
+        Optional<String> yamlFilename = Optional.ofNullable(System.getProperty("figaro.yaml.filename"));
+        if (yamlFilename.isPresent()) {
+            return yamlFilename.get();
+        }
+        return "/application.yml";
     }
 }

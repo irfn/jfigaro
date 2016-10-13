@@ -6,6 +6,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -50,5 +51,15 @@ public class FigaroTest {
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         ApplicationConfiguration configurations = Figaro.configure();
         assertEquals(YamlConfiguration.class, configurations.getClass());
+    }
+
+    @Test
+    public void shouldConfigureYamlFilename() {
+        mockStatic(System.class);
+        when(System.getenv("APP_ENVIRONMENT")).thenReturn("development");
+        when(System.getProperty("figaro.yaml.filename")).thenReturn("/override-application-yaml-configuration-test.yml");
+        ApplicationConfiguration configurations = Figaro.configure();
+        assertEquals(YamlConfiguration.class, configurations.getClass());
+        assertTrue(configurations.getValueAsBoolean("overridden"));
     }
 }
