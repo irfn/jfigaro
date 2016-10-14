@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public class Figaro {
-    public static ApplicationConfiguration configure(Set<String> requiredKeys) throws MissingKeysException {
+    public static ApplicationConfiguration configure(Set<String> requiredConfigurationNames) throws MissingRequiredConfigurationException {
         Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
 
         String appEnvironment = System.getenv("APP_ENVIRONMENT");
@@ -31,9 +31,9 @@ public class Figaro {
             logger.info("Loading environment based configuration");
             configuration = new EnvironmentConfiguration();
         }
-        Set<String> missingKeys = getMissingKeys(configuration, requiredKeys);
-        if(!missingKeys.isEmpty()) {
-            throw new MissingKeysException(missingKeys);
+        Set<String> missingRequiredConfigurationNames = getMissingRequiredConfigurationNames(configuration, requiredConfigurationNames);
+        if(!missingRequiredConfigurationNames.isEmpty()) {
+            throw new MissingRequiredConfigurationException(missingRequiredConfigurationNames);
         }
         return configuration;
     }
@@ -46,16 +46,16 @@ public class Figaro {
         return "/application.yml";
     }
 
-    private static Set<String> getMissingKeys(ApplicationConfiguration configuration, Set<String> requiredKeys) {
-        Set<String> missingKeys = new HashSet<>();
-        if(configuration != null && requiredKeys != null) {
-            for(String requiredKey: requiredKeys) {
-                Object requiredValue = configuration.getValue(requiredKey);
-                if(requiredValue == null) {
-                    missingKeys.add(requiredKey);
+    private static Set<String> getMissingRequiredConfigurationNames(ApplicationConfiguration configuration, Set<String> requiredConfigurationsNames) {
+        Set<String> missingRequiredConfigurations = new HashSet<>();
+        if(configuration != null && requiredConfigurationsNames != null) {
+            for(String requiredConfiguration: requiredConfigurationsNames) {
+                Object requiredConfigurationValue = configuration.getValue(requiredConfiguration);
+                if(requiredConfigurationValue == null) {
+                    missingRequiredConfigurations.add(requiredConfiguration);
                 }
             }
         }
-        return  missingKeys;
+        return  missingRequiredConfigurations;
     }
 }
