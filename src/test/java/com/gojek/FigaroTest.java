@@ -23,7 +23,7 @@ public class FigaroTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void shouldReturnFileBasedConfigurationsForTestEnvironment() throws MissingKeysException {
+    public void shouldReturnFileBasedConfigurationsForTestEnvironment() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn("test");
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -31,7 +31,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldReturnFileBasedConfigurationsForDevEnvironment() throws MissingKeysException {
+    public void shouldReturnFileBasedConfigurationsForDevEnvironment() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn("development");
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -39,7 +39,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldReturnFileBasedConfigurationsForNullEnvironment() throws MissingKeysException {
+    public void shouldReturnFileBasedConfigurationsForNullEnvironment() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -47,7 +47,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldReturnEnvironmentBasedConfigurationsForAnyOtherEnvironment() throws MissingKeysException {
+    public void shouldReturnEnvironmentBasedConfigurationsForAnyOtherEnvironment() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn("prod");
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -55,7 +55,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldDefaultEnvironmentToDevelopment() throws MissingKeysException {
+    public void shouldDefaultEnvironmentToDevelopment() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -63,7 +63,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldConfigureYamlFilename() throws MissingKeysException {
+    public void shouldConfigureYamlFilename() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn("development");
         when(System.getProperty("figaro.yaml.filename")).thenReturn("/override-application-yaml-configuration-test.yml");
@@ -73,7 +73,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldReturnFileBasedConfigurationsForNullRequiredKeys() throws MissingKeysException {
+    public void shouldReturnFileBasedConfigurationsForNullRequiredKeys() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         ApplicationConfiguration configurations = Figaro.configure(null);
@@ -81,7 +81,7 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldReturnFileBasedConfigurationsForEmptyRequiredKeySet() throws MissingKeysException {
+    public void shouldReturnFileBasedConfigurationsForEmptyRequiredKeySet() throws MissingRequiredConfigurationException {
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         ApplicationConfiguration configurations = Figaro.configure(Collections.emptySet());
@@ -89,9 +89,9 @@ public class FigaroTest {
     }
 
     @Test
-    public void shouldThrowMissingKeysExceptionForNotFoundRequiredKey() throws MissingKeysException {
-        thrown.expect(MissingKeysException.class);
-        thrown.expectMessage("Missing required configuration keys: [NOT_SET_KEY_1, NOT_SET_KEY_2]");
+    public void shouldThrowMissingKeysExceptionForNotFoundRequiredKey() throws MissingRequiredConfigurationException {
+        thrown.expect(MissingRequiredConfigurationException.class);
+        thrown.expectMessage("Missing required configurations: [NOT_SET_KEY_1, NOT_SET_KEY_2]");
         mockStatic(System.class);
         when(System.getenv("APP_ENVIRONMENT")).thenReturn(null);
         Set<String> requiredKeys = new HashSet<String> (){{
