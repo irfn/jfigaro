@@ -48,7 +48,7 @@ public abstract class ApplicationConfiguration {
         return Objects.equals(value, "") ? 0 :Long.decode(value);
     }
 
-    public Long getValueAsLong(String name, int defaultValue) {
+    public Long getValueAsLong(String name, long defaultValue) {
         Object value = getValue(name);
         return value != null? getValueAsLong(name) : defaultValue;
     }
