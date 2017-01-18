@@ -32,6 +32,16 @@ public class ApplicationConfigurationTest {
     }
 
     @Test
+    public void shouldGetOptionalValueAsString() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertEquals("2.0", exampleConfiguration.getValueAsString("test", "2.0"));
+    }
+
+    @Test
     public void shouldGetValueAsInt() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
@@ -49,6 +59,16 @@ public class ApplicationConfigurationTest {
             }
         };
         assertEquals(Integer.valueOf(0), exampleConfiguration.getValueAsInt("test"));
+    }
+
+    @Test
+    public void shouldGetOptionalValueAsInt() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertEquals(Integer.valueOf(2), exampleConfiguration.getValueAsInt("test", 2));
     }
 
     @Test
@@ -72,6 +92,16 @@ public class ApplicationConfigurationTest {
     }
 
     @Test
+    public void shouldGetOptionalValueAsDouble() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertEquals(Double.valueOf(2.1), exampleConfiguration.getValueAsDouble("test", 2.1));
+    }
+
+    @Test
     public void shouldGetValueAsLong() {
         exampleConfiguration = new ApplicationConfiguration() {
             public Object getValue(String name) {
@@ -89,6 +119,16 @@ public class ApplicationConfigurationTest {
             }
         };
         assertEquals(Long.valueOf(0), exampleConfiguration.getValueAsLong("test"));
+    }
+
+    @Test
+    public void shouldGetOptionalValueAsLong() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertEquals(Long.valueOf(213), exampleConfiguration.getValueAsLong("test", 213));
     }
 
     @Test
@@ -111,6 +151,15 @@ public class ApplicationConfigurationTest {
         assertEquals(Float.valueOf(0), exampleConfiguration.getValueAsFloat("test"));
     }
 
+    @Test
+    public void shouldGetOptionalValueAsFloat() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertEquals(Float.valueOf(2.1f), exampleConfiguration.getValueAsFloat("test", 2.1f));
+    }
 
     @Test
     public void shouldGetValueAsBoolean() {
@@ -132,4 +181,13 @@ public class ApplicationConfigurationTest {
         assertFalse(exampleConfiguration.getValueAsBoolean("test"));
     }
 
+    @Test
+    public void shouldGetOptionalValueAsBoolean() {
+        exampleConfiguration = new ApplicationConfiguration() {
+            public Object getValue(String name) {
+                return null;
+            }
+        };
+        assertTrue(exampleConfiguration.getValueAsBoolean("test", true));
+    }
 }
