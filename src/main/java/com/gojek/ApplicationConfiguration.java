@@ -18,9 +18,19 @@ public abstract class ApplicationConfiguration {
         else return value.toString();
     }
 
+    public String getValueAsString(String name, String defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsString(name) : defaultValue;
+    }
+
     public Integer getValueAsInt(String name) {
         String value = this.getValueAsString(name);
         return Objects.equals(value, "") ? 0 : Integer.valueOf(value);
+    }
+
+    public Integer getValueAsInt(String name, int defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsInt(name) : defaultValue;
     }
 
     public Double getValueAsDouble(String name) {
@@ -28,9 +38,19 @@ public abstract class ApplicationConfiguration {
         return Objects.equals(value, "") ? 0 : Double.valueOf( value);
     }
 
+    public Double getValueAsDouble(String name, double defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsDouble(name) : defaultValue;
+    }
+
     public Long getValueAsLong(String name) {
         String value = this.getValueAsString(name);
         return Objects.equals(value, "") ? 0 :Long.decode(value);
+    }
+
+    public Long getValueAsLong(String name, int defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsLong(name) : defaultValue;
     }
 
     public Float getValueAsFloat(String name) {
@@ -38,8 +58,18 @@ public abstract class ApplicationConfiguration {
         return Objects.equals(value, "") ? 0 :Float.parseFloat(value);
     }
 
+    public Float getValueAsFloat(String name, float defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsFloat(name) : defaultValue;
+    }
+
     public boolean getValueAsBoolean(String name) {
         String value = this.getValueAsString(name);
         return Objects.equals(value, "") ? false :Boolean.valueOf(value);
+    }
+
+    public boolean getValueAsBoolean(String name, boolean defaultValue) {
+        Object value = getValue(name);
+        return value != null? getValueAsBoolean(name) : defaultValue;
     }
 }
