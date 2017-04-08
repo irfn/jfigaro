@@ -1,4 +1,4 @@
-# JFigaro [![Build Status](https://travis-ci.org/bitfurry/jfigaro.svg?branch=master)](https://travis-ci.org/bitfurry/jfigaro)
+# JFigaro [![Build Status](https://travis-ci.org/gojek-engineering/jfigaro.svg?branch=master)](https://travis-ci.org/gojek-engineering/jfigaro)
 
 JFigaro is java based Application configuration library inspired by ruby gem [Figaro](https://github.com/laserlemon/figaro)
 
