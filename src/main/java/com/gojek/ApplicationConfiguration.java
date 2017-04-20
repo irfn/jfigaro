@@ -5,6 +5,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
+import static java.lang.String.format;
+
 public abstract class ApplicationConfiguration {
     Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
     abstract Object getValue(String name);
@@ -12,7 +14,7 @@ public abstract class ApplicationConfiguration {
     public String getValueAsString(String name) {
         Object value = getValue(name);
         if (value == null) {
-            logger.warn("Config with key %s was null", name);
+            logger.warn(format("Config with key was null: %s", name));
             return "";
         }
         else return value.toString();
