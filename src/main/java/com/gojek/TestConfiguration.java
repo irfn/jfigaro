@@ -13,7 +13,7 @@ public class TestConfiguration extends ApplicationConfiguration {
     }
 
     @Override
-    Object getValue(String name) {
+    public Object getValue(String name) {
         return this.testConfig.get(name);
     }
 }

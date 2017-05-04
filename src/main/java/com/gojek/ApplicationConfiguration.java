@@ -9,7 +9,7 @@ import static java.lang.String.format;
 
 public abstract class ApplicationConfiguration {
     Logger logger = LoggerFactory.getLogger(ApplicationConfiguration.class);
-    abstract Object getValue(String name);
+    public abstract Object getValue(String name);
 
     public String getValueAsString(String name) {
         Object value = getValue(name);
