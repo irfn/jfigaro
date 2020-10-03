@@ -15,7 +15,7 @@ This is straightforward in production environments but local development environ
 - The more scalable way to have configuration is via environment variables. (see 12factor)
 - Proliferation of properties files to support testing etc.
 
-#Whats different?
+# Whats different?
 
 JFigaro parses a YAML file in your application for setting environment in dev and test modes. In other modes Environment is used via `System.getenv`
 
@@ -27,12 +27,28 @@ JFigaro parses a YAML file in your application for setting environment in dev an
 
 <img src="http://imgs.xkcd.com/comics/standards.png">
 
-
 # Roadmap
 
 - | Feature | done|
 - | MVP | yes|
 - | Logging | no |
+
+# Installation
+
+The latest release is available on [Bintray JCenter](https://bintray.com/irfn/maven/jfigaro).
+
+You install it using gradle. Example:
+
+```groovy
+repositories {
+    jcenter()
+}
+
+dependencies {
+  implementation group: 'com.gojek', name: 'jfigaro', version: '1.2.3'
+}
+```
+
 # App Environment
 `APP_ENVIRONMENT` is the environment variable which jFigaro looks for. 
 
@@ -43,7 +59,8 @@ set APP_ENVIRONMENT = production
 development is assumed to be the default.
 
 
-### Example
+# Example
+
 ```
 ApplicationConfiguration configuration = Figaro.configure()
 configuration.getValue("SOME_VALUE")
